@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    {{ header }}
+    <soap:Body>
+        <add xmlns="urn:messages_{{ nsVersion }}.platform.webservices.netsuite.com">
+            <record xmlns:q1="urn:filecabinet_{{ nsVersion }}.documents.webservices.netsuite.com" xsi:type="q1:Folder">
+                <q1:name>{{ foldername }}</q1:name>
+                {% if parent %}<q1:parent internalId="{{ parent }}" type="folder" />'{% endif %}
+            </record>
+        </add>
+    </soap:Body>
+</soap:Envelope>

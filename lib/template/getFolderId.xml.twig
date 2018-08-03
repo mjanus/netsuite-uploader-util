@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    ${generateSOAPHeader()}
+    <soap:Body>
+        <search xmlns="urn:messages_{{ nsVersion }}.platform.webservices.netsuite.com">
+            <searchRecord xmlns:q1="urn:filecabinet_{{ nsVersion }}.documents.webservices.netsuite.com" xsi:type="q1:FolderSearch">
+                <q1:basic>
+                    <name operator="is" xmlns="urn:common_{{ nsVersion }}.platform.webservices.netsuite.com">
+                        <searchValue xmlns="urn:core_{{ nsVersion }}.platform.webservices.netsuite.com">{{ foldername }}</searchValue>
+                    </name>
+                    <parent operator="anyOf" xmlns="urn:common_{{ nsVersion }}.platform.webservices.netsuite.com">
+                        <searchValue internalId="{{ parentId }}" type="folder" xmlns="urn:core_{{ nsVersion }}.platform.webservices.netsuite.com" />
+                    </parent>
+                </q1:basic>
+            </searchRecord>
+        </search>
+    </soap:Body>
+</soap:Envelope>

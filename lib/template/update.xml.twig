@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    ${generateSOAPHeader()}
+    <soap:Body>
+        <update xmlns="urn:messages_{{ nsVersion }}.platform.webservices.netsuite.com">
+            <record xmlns:q1="urn:filecabinet_{{ nsVersion }}.documents.webservices.netsuite.com" xsi:type="q1:File" internalId="{{ fileid }}">
+                <q1:content>{{ content }}</q1:content>
+                {% for key, recordElement in recordElements %}
+                    <q1:{{ key }}>{{ recordElement.value }}</q1:{{ key }}>
+                {% endfor %}
+            </record>
+        </update>
+    </soap:Body>
+</soap:Envelope>

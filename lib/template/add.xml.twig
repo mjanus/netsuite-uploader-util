@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    {{ header }}
+    <soap:Body>
+        <add xmlns="urn:messages_{{ nsVersion }}.platform.webservices.netsuite.com">
+            <record xmlns:q1="urn:filecabinet_{{ nsVersion }}.documents.webservices.netsuite.com" xsi:type="q1:File" internalId="">
+                <q1:name>{{ filename }}</q1:name>
+                <q1:content>{{ content }}</q1:content>
+                <q1:folder internalId="{{ parentId }}" type="folder" />
+                {% for key, recordElement in recordElements %}
+                    <q1:{{ key }}>{{ recordElement.value }}</q1:{{ key }}>
+                {% endfor %}
+            </record>
+        </add>
+    </soap:Body>
+</soap:Envelope>
